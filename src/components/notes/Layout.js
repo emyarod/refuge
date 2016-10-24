@@ -2,8 +2,9 @@ import React from 'react';
 import * as firebase from 'firebase';
 import { config } from '../../config';
 import Note from './Note';
+import './Layout.scss';
 
-export default class Index extends React.Component {
+export default class Layout extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -19,37 +20,11 @@ export default class Index extends React.Component {
       const value = snapshot.val();
       const note = {};
 
-      // name object key after note title, assign note text to value
+      // name object key after note title, assign note body to keyvalue
       note[key] = value;
       this.state.notes.unshift(note);
     });
-
-
-    const rootRef = firebase.database().ref().child('react');
-    const speedRef = rootRef.child('speed');
-    speedRef.on('value', snap => {
-      this.setState({
-        speed: snap.val(),
-      });
-    });
   }
-
-  // render() {
-  //   return (
-  //     <div>
-  //       <ol>
-  //         {/* iterate over notes array */}
-  //         {this.state.notes.map((note, index) => {
-  //           return (
-  //             <li key={`note${index}`}>
-  //               <pre>{note}</pre>
-  //             </li>
-  //           );
-  //         })}
-  //       </ol>
-  //     </div>
-  //   );
-  // }
 
   render() {
     return (

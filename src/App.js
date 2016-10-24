@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import logo from './logo.svg';
-import './App.css';
-import Notes from './components/notes/Index';
+import './App.scss';
+import Notes from './components/notes/Layout';
 
 class App extends Component {
   constructor() {
