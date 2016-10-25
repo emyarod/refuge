@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import logo from './logo.svg';
 import './App.scss';
+import NoteForm from './components/notes/NoteForm';
 import Notes from './components/notes/Layout';
 
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const rootRef = firebase.database().ref().child('react');
+    const rootRef = firebase.database().ref('react');
     const speedRef = rootRef.child('speed');
     speedRef.on('value', snap => {
       this.setState({
@@ -32,6 +33,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <NoteForm />
         <Notes />
         <h1>{this.state.speed}</h1>
       </div>
