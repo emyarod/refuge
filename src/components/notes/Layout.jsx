@@ -46,8 +46,7 @@ export default class Layout extends React.Component {
       const outdatedNote = noteRepository.find(notes, key);
       outdatedNote.title = title;
       outdatedNote.content = content;
-      this.setState({...this.state, newState });
-      // this.setState(newState);
+      this.setState({ ...this.state, notes });
     });
 
     noteRepository.on('removed', ({ key }) => {
