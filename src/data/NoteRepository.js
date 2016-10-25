@@ -18,10 +18,12 @@ class NoteRepository extends EventEmitter {
     this.attachFirebaseListeners();
   }
 
+  // creates a note
   create({ title = '', content = '', }, onComplete) {
     this.ref.push({ title, content }, onComplete);
   }
 
+  // updates a note
   update({ key, title = '', content = '' }, onComplete) {
     this.ref.child(key).update({ title, content }, onComplete);
   }
