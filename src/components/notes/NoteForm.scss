@@ -1,0 +1,33 @@
+form.create-note {
+  position: relative;
+  width: 480px;
+  margin: 15px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 2px;
+  box-shadow: 0 1px 5px #ccc;
+
+  input,
+  textarea {
+    width: 100%;
+    border: none;
+    padding: 4px;
+    outline: none;
+    font-size: 1.2em;
+  }
+
+  button {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: #41b883;
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    cursor: pointer;
+    outline: none;
+  }
+}
