@@ -50,11 +50,9 @@ export default class Layout extends React.Component {
     });
 
     noteRepository.on('removed', ({ key }) => {
-      const newState = this.state.notes;
-      const noteToRemove = noteRepository.find(newState, key);
-      newState.splice(noteToRemove);
-      this.setState({...this.state, newState });
-      // this.setState(newState);
+      const noteToRemove = noteRepository.find(this.state.notes, key);
+      const notes = this.state.notes.filter(note => note !== noteToRemove);
+      this.setState({ ...this.state, notes });
     })
 
     // firebase.initializeApp(config);
