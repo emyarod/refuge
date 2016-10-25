@@ -79,7 +79,7 @@ export default class Layout extends React.Component {
     return (
       <div className="notes" ref="notes">
         {this.state.notes.map(({ title, content, key }) => {
-          return <Note key={key} title={title} content={content} />;
+          return <Note key={key} id={key} title={title} content={content} />;
         })}
       </div>
     );
