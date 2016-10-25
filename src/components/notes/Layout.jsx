@@ -36,7 +36,7 @@ export default class Layout extends React.Component {
       // update state
       const notes = this.state.notes.slice(0);
       notes.unshift(note);
-      this.setState({...this.state, notes });
+      this.setState({ ...this.state, notes });
       this.state.masonry.reloadItems();
       this.state.masonry.layout();
     });
