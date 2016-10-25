@@ -28,7 +28,8 @@ class NoteRepository extends EventEmitter {
     this.ref.child(key).update({ title, content }, onComplete);
   }
 
-  remove({ key }, onComplete) {
+  // removes a note
+  remove({ id: key }, onComplete) {
     this.ref.child(key).remove(onComplete);
   }
 
