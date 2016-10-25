@@ -11,7 +11,6 @@ export default class Note extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
     return (
       <div className="note">
         <h1>{this.props.title}</h1>
@@ -27,6 +26,7 @@ export default class Note extends React.Component {
   }
 }
 
+// TODO: see if stateless functional component can be reimplemented
 // export default function Note({ title, content }) {
 //   const remove = () => {
 //     console.log('hi');
