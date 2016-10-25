@@ -33,6 +33,16 @@ class NoteRepository extends EventEmitter {
     this.ref.child(key).remove(onComplete);
   }
 
+  // Finds the index of the note inside the 'notes' array by looking for its key
+  findIndex(notes, key) {
+    return notes.findIndex(note => note.key === key);
+  }
+
+  // Finds the note inside the 'notes' array by searching for its key
+  find(notes, key) {
+    return notes.find(note => note.key === key);
+  }
+
   // process snapshot data and add unique Firebase key to each note
   snapshotToNote(snapshot) {
     const { key } = snapshot;
