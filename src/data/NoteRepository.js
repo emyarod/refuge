@@ -75,6 +75,13 @@ class NoteRepository extends EventEmitter {
     this.ref.on('child_removed', this.onRemoved, this);
     this.ref.on('child_changed', this.onChanged, this);
   }
+
+  // detach listeners from Firebase
+  detachFirebaseListeners() {
+    this.ref.off('child_added', this.onAdded, this);
+    this.ref.off('child_removed', this.onRemoved, this);
+    this.ref.off('child_changed', this.onChanged, this);
+  }
 }
 
 export default new NoteRepository();
