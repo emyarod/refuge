@@ -14,15 +14,17 @@ export default class Layout extends React.Component {
 
   componentDidMount() {
     firebase.initializeApp(config);
-    const notesRef = firebase.database().ref().child('notes');
+    const notesRef = firebase.database().ref('notes');
     notesRef.on('child_added', snapshot => {
-      const { key } = snapshot;
-      const value = snapshot.val();
+      // name object key after note title, assign note content to keyvalue
+      const { content, title } = snapshot.val();
       const note = {};
+      note[title] = content;
 
-      // name object key after note title, assign note body to keyvalue
-      note[key] = value;
-      this.state.notes.unshift(note);
+      // update state
+      const newState = this.state.notes;
+      newState.unshift(note);
+      this.setState(newState)
     });
   }
 
