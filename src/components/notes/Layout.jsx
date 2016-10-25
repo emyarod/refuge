@@ -1,5 +1,5 @@
 import React from 'react';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { config } from '../../config';
 import Note from './Note';
 import './Layout.scss';
