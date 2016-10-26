@@ -64,7 +64,8 @@ export default class NoteForm extends React.Component {
           value={this.state.content}
           placeholder="Text goes here..."
           rows={3}
-          onChange={(e) => this.handleChange(e)}>
+          onChange={(e) => this.handleChange(e)}
+        >
         </textarea>
         <button type="submit">+</button>
       </form>
