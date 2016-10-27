@@ -58,18 +58,24 @@ export default class UpdateModal extends React.Component {
           onSubmit={e => this.update(e)}
           onClick={e => e.stopPropagation()}
         >
-        <input name="title" defaultValue={this.props.note.title} placeholder="Title" />
-        <textarea
-          name="content"
-          defaultValue={this.props.note.content}
-          placeholder="Text goes here..."
-          rows={8}
-        >
-        </textarea>
-        <button type="button" onClick={() => this.remove()}>
-          <i className="fa fa-trash-o" aria-hidden></i>
-        </button>
-        <button type="submit">Done</button>
+          <input
+            name="title"
+            defaultValue={this.props.note.title}
+            placeholder="Title"
+            onChange={e => this.handleChange(e)}
+          />
+          <textarea
+            name="content"
+            defaultValue={this.props.note.content}
+            placeholder="Text goes here..."
+            rows={8}
+            onChange={e => this.handleChange(e)}
+          >
+          </textarea>
+          <button type="button" onClick={() => this.remove()}>
+            <i className="fa fa-trash-o" aria-hidden></i>
+          </button>
+          <button type="submit">Done</button>
         </form>
       </div>
     );
