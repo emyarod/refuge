@@ -39,8 +39,6 @@ export default class UpdateModal extends React.Component {
   }
 
   handleChange(e) {
-    // TODO: pass updated note info to NoteRepository via state
-    // console.log(this);
     const property = {};
     const propName = e.target.name;
     property[propName] = e.target.value;
