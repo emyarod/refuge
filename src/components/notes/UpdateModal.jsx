@@ -81,10 +81,6 @@ export default class UpdateModal extends React.Component {
     );
   }
 
-  dismissModal() {
-    this.setState({ show: false, animating: true });
-  }
-
   componentDidMount() {
     this.setState({ animating: false });
   }
