@@ -55,8 +55,8 @@ export default class UpdateModal extends React.Component {
       >
         <form
           className="edit-note"
-          onSubmit={(e) => this.update(e)}
-          onClick={(e) => e.stopPropagation()}
+          onSubmit={e => this.update(e)}
+          onClick={e => e.stopPropagation()}
         >
         <input name="title" defaultValue={this.props.note.title} placeholder="Title" />
         <textarea
