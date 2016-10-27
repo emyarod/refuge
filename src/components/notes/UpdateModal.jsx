@@ -49,7 +49,10 @@ export default class UpdateModal extends React.Component {
 
   modal(className) {
     return (
-      <div className={`backdrop modal-transition ${className}`} onClick={() => this.dismissModal()}>
+      <div
+        className={`backdrop modal-transition ${className}`}
+        onClick={() => this.dismissModal()}
+      >
         <form
           className="edit-note"
           onSubmit={(e) => this.update(e)}
