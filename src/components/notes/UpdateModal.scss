@@ -1,0 +1,75 @@
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(50,50,50,.8);
+}
+
+form.edit-note {
+  position: relative;
+  width: 480px;
+  max-width: 100%;
+  margin: 25vh auto 0;
+  padding: 15px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 50px #555;
+
+  input,
+  textarea {
+    width: 100%;
+    max-width: 100%;
+    border: 0;
+    padding: 4px;
+    outline: none;
+    font-size: 1.2em;
+  }
+
+  button {
+    border: 0;
+    margin: 0 4px 0 0;
+    font-size: 20px;
+    background: none;
+    cursor: pointer;
+    opacity: .6;
+    transition: opacity .5s;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+
+    &[type='submit'] {
+      float: right;
+      border: 0;
+      margin: 0;
+      padding: 4px 6px;
+      font-size: 18px;
+      color: #fff;
+      background: #41b883;
+      border-radius: 3px;
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+}
+
+.modal-transition {
+  transition: opacity .3s ease;
+  opacity: 1;
+
+  form {
+    transition: transform .3s ease;
+  }
+}
+
+.modal-enter,
+.modal-leave {
+  opacity: 0;
+
+  form {
+    transform: scale(1.1);
+  }
+}
