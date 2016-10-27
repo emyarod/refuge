@@ -87,7 +87,12 @@ export default class UpdateModal extends React.Component {
 
   componentDidUpdate() {
     if (!this.state.show && this.state.animating) {
-      window.setTimeout(() => this.setState({ animating: false }), 300);
+      window.setTimeout(() => {
+        this.setState({ animating: false });
+
+        // callback to set `App.state.modal` to `false`
+        this.props.onDismiss();
+      }, 300);
     }
   }
 
