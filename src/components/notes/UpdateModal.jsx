@@ -24,14 +24,27 @@ export default class UpdateModal extends React.Component {
 
   update(e) {
     e.preventDefault();
-    // console.log(this.props);
-    // noteRepository.update(this.props, err => {
-    //   // TODO: inform user
-    //   if (err) throw err;
-    //   this.dismissModal();
-    // });
+    const { note: { key } } = this.props;
+    const title = this.state.title
+      ? this.state.title
+      : this.props.note.title;
+    const content = this.state.content
+      ? this.state.content
+      : this.props.note.content;
+    noteRepository.update({ key, title, content }, err => {
+      // TODO: inform user
+      if (err) throw err;
+      this.dismissModal();
+    });
+  }
 
-    console.log('update');
+  handleChange(e) {
+    // TODO: pass updated note info to NoteRepository via state
+    // console.log(this);
+    const property = {};
+    const propName = e.target.name;
+    property[propName] = e.target.value;
+    this.setState(property);
   }
 
   modal(className) {
