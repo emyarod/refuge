@@ -11,16 +11,11 @@ export default class UpdateModal extends React.Component {
   }
 
   remove() {
-    // this.props === note object
-
-
-
-    // noteRepository.remove(this.props, err => {
-    //   // TODO: inform user
-    //   if (err) throw err;
-    //   this.dismissModal();
-    // });
-    console.log('remove');
+    noteRepository.remove(this.props.note, err => {
+      // TODO: inform user
+      if (err) throw err;
+      this.dismissModal();
+    });
   }
 
   update(e) {
