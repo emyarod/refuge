@@ -3,7 +3,8 @@ import './Note.scss';
 import noteRepository from '../../data/NoteRepository';
 
 export default class Note extends React.Component {
-  remove() {
+  remove(e) {
+    e.stopPropagation();
     noteRepository.remove(this.props, err => {
       // TODO: inform user
       if (err) throw err;
@@ -15,7 +16,7 @@ export default class Note extends React.Component {
       <div className="note" onClick={this.props.clickHandler}>
         <h1>{this.props.title}</h1>
         <pre>{this.props.content}</pre>
-        <button type="button" onClick={() => this.remove()}>
+        <button type="button" onClick={e => this.remove(e)}>
           <i className="fa fa-trash-o" aria-hidden></i>
         </button>
         <button className="edit" type="button">
