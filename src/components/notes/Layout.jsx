@@ -13,6 +13,11 @@ export default class Layout extends React.Component {
     };
   }
 
+  selectNote(note) {
+    // console.log('hi', note);
+    return this.props.modalHandler(note);
+  }
+
   componentDidMount() {
     /**
      * TODO: update description
@@ -79,7 +84,15 @@ export default class Layout extends React.Component {
     return (
       <div className="notes" ref="notes">
         {this.state.notes.map(({ title, content, key }) => {
-          return <Note key={key} id={key} title={title} content={content} />;
+          return (
+            <Note
+              key={key}
+              id={key}
+              title={title}
+              content={content}
+              clickHandler={() => this.selectNote({ title, content, key })}
+            />
+          );
         })}
       </div>
     );
