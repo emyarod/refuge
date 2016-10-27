@@ -10,6 +10,10 @@ export default class UpdateModal extends React.Component {
     };
   }
 
+  dismissModal() {
+    this.setState({ show: false, animating: true });
+  }
+
   remove() {
     noteRepository.remove(this.props.note, err => {
       // TODO: inform user
