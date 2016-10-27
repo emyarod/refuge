@@ -12,7 +12,7 @@ export default class Note extends React.Component {
 
   render() {
     return (
-      <div className="note">
+      <div className="note" onClick={this.props.clickHandler}>
         <h1>{this.props.title}</h1>
         <pre>{this.props.content}</pre>
         <button type="button" onClick={() => this.remove()}>
