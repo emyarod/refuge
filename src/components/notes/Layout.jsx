@@ -26,6 +26,7 @@ export default class Layout extends React.Component {
      * that will be turned into a Masonry grid.
      * This data comes from the ref callback attribute
      */
+    // TODO: remove spread operator parameter
     this.setState({
       ...this.state,
       masonry: new Masonry(this.refs.notes, {
