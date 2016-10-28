@@ -102,7 +102,7 @@ export default class UpdateModal extends React.Component {
     } else if (this.state.show && !this.state.animating) {
       return this.modal('');
     } else if (!this.state.show && this.state.animating) {
-      return this.modal('modal-leave');
+      return this.modal('modal-exit');
     }
 
     return null;
