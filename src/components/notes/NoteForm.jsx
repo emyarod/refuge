@@ -34,19 +34,6 @@ export default class NoteForm extends React.Component {
           content: '',
         });
       });
-      // // push new note to firebase database
-      // const notesRef = firebase.database().ref('notes');
-      // const newNoteRef = notesRef.push();
-      // newNoteRef.set({
-      //   title,
-      //   content,
-      // });
-      //
-      // // reset state to initial values
-      // this.setState({
-      //   title: '',
-      //   content: '',
-      // });
     }
   }
 

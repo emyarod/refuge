@@ -14,7 +14,6 @@ export default class Layout extends React.Component {
   }
 
   selectNote(note) {
-    // console.log('hi', note);
     return this.props.modalHandler(note);
   }
 
@@ -59,19 +58,6 @@ export default class Layout extends React.Component {
       const notes = this.state.notes.filter(note => note !== noteToRemove);
       this.setState({ ...this.state, notes });
     })
-
-    // firebase.initializeApp(config);
-    // const notesRef = firebase.database().ref('notes');
-    // notesRef.on('child_added', snapshot => {
-    //   const { title, content } = snapshot.val();
-    //   const id = snapshot.W.path.o.join('');
-    //   const note = { title, content, id };
-    //
-    //   // update state
-    //   const newState = this.state.notes;
-    //   newState.unshift(note);
-    //   this.setState(newState);
-    // });
   }
 
   componentDidUpdate() {
