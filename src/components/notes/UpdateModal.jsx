@@ -22,6 +22,7 @@ export default class UpdateModal extends React.Component {
     });
   }
 
+  // passes new note info to noteRepository `update` method
   update(e) {
     e.preventDefault();
     const { note: { key } } = this.props;
@@ -38,6 +39,7 @@ export default class UpdateModal extends React.Component {
     });
   }
 
+  // modifies state while a note is being edited
   handleChange(e) {
     const property = {};
     const propName = e.target.name;
