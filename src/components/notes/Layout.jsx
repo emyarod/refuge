@@ -28,7 +28,6 @@ export default class Layout extends React.Component {
      */
     // TODO: remove spread operator parameter
     this.setState({
-      ...this.state,
       masonry: new Masonry(this.refs.notes, {
         itemSelector: '.note',
         columnWidth: 240,
