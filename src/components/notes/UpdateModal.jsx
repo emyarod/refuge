@@ -17,8 +17,11 @@ export default class UpdateModal extends React.Component {
 
   remove() {
     noteRepository.remove(this.props.note, err => {
-      // TODO: inform user
-      if (err) throw err;
+      if (err) return this.props.alertHandler({
+        type: 'error',
+        message: 'Failed to delete note',
+      });
+
       this.dismissModal();
     });
   }
@@ -34,8 +37,11 @@ export default class UpdateModal extends React.Component {
       ? this.state.content
       : this.props.note.content;
     noteRepository.update({ key, title, content }, err => {
-      // TODO: inform user
-      if (err) throw err;
+      if (err) return this.props.alertHandler({
+        type: 'error',
+        message: 'Failed to update note',
+      });
+
       this.dismissModal();
     });
   }
