@@ -22,13 +22,22 @@ export default class App extends React.Component {
     this.setState({ modal: true, note, });
   }
 
+  handleAlert(alert) {
+    this.refs.alerts.addAlert(alert)
+  }
+
   render() {
     return (
       <div>
-        <NoteForm />
-        <Notes modalHandler={note => this.displayModal(note)} />
+        <AlertsWrapper ref="alerts" />
+        <NoteForm alertHandler={alert => this.handleAlert(alert)} />
+        <NotesWrapper
+          alertHandler={alert => this.handleAlert(alert)}
+          modalHandler={note => this.displayModal(note)}
+        />
         {this.state.modal
           ? <UpdateModal
+              alertHandler={alert => this.handleAlert(alert)}
               note={this.state.note}
               onDismiss={() => this.dismissModal()}
             />
