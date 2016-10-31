@@ -1,5 +1,6 @@
 import React from 'react';
 import noteRepository from '../../data/NoteRepository';
+import './UpdateModal.scss';
 
 export default class UpdateModal extends React.Component {
   constructor() {
