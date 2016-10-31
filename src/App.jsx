@@ -2,9 +2,9 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.scss';
 import NoteForm from './components/notes/NoteForm';
-import Notes from './components/notes/Layout';
+import NotesWrapper from './components/notes/NotesWrapper';
 import UpdateModal from './components/notes/UpdateModal';
-import './components/notes/UpdateModal.scss';
+import AlertsWrapper from './components/AlertsWrapper';
 
 export default class App extends React.Component {
   constructor() {
