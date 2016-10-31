@@ -1,0 +1,28 @@
+.alert {
+  max-height: 200px;
+  overflow: hidden;
+  transition: 1s ease-in-out;
+  will-change: max-height, opacity;
+
+  &.error {
+    background: #e03c3c;
+    color: #fff;
+  }
+
+  &.success {
+    background: #41b883;
+    color: #fff;
+  }
+
+  &.enter,
+  &.exit {
+    max-height: 0;
+  }
+
+  p {
+    width: 480px;
+    margin: 0 auto;
+    padding: 4px;
+    text-align: center;
+  }
+}
