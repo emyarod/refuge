@@ -31,13 +31,17 @@ export default class NoteForm extends React.Component {
     const { title, content } = this.state;
     if (title.trim() || content.trim()) {
       noteRepository.create({ title, content }, err => {
-        // TODO: inform user
-        if (err) throw err;
+        if (err) return this.props.alertHandler({
+          type: 'error',
+          message: 'Failed to create note',
+        });
 
         // reset state to initial values
-        this.setState({
-          title: '',
-          content: '',
+        this.setState({ title: '', content: '' });
+
+        return this.props.alertHandler({
+          type: 'success',
+          message: 'Note successfully created',
         });
       });
     }
