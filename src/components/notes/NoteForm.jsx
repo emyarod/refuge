@@ -2,6 +2,7 @@ import React from 'react';
 import './NoteForm.scss';
 import noteRepository from '../../data/NoteRepository';
 
+// Class for note creation form
 export default class NoteForm extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,9 @@ export default class NoteForm extends React.Component {
     };
   }
 
-  // update state with data from form
+  /**
+   * Update state with data from form
+   */
   handleChange(e) {
     const { target: { name: key } } = e;
     const newState = {};
@@ -19,7 +22,10 @@ export default class NoteForm extends React.Component {
     this.setState(newState)
   }
 
-  // add new note to database, then reset state to initial value
+  /**
+   * Add a new note to the database, then reset state
+   * @param {Object} e - Proxy object
+   */
   createNote(e) {
     e.preventDefault();
     const { title, content } = this.state;
