@@ -1,10 +1,10 @@
 import React from 'react';
 import Masonry from 'masonry-layout';
 import Note from './Note';
-import './Layout.scss';
+import './NotesWrapper.scss';
 import noteRepository from '../../data/NoteRepository';
 
-export default class Layout extends React.Component {
+export default class NotesWrapper extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -26,7 +26,6 @@ export default class Layout extends React.Component {
      * that will be turned into a Masonry grid.
      * This data comes from the ref callback attribute
      */
-    // TODO: remove spread operator parameter
     this.setState({
       masonry: new Masonry(this.refs.notes, {
         itemSelector: '.note',
@@ -77,6 +76,7 @@ export default class Layout extends React.Component {
               title={title}
               content={content}
               clickHandler={() => this.selectNote({ key, title, content })}
+              alertHandler={alert => this.props.alertHandler(alert)}
             />
           );
         })}
