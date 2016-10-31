@@ -49,19 +49,19 @@ export default class NoteForm extends React.Component {
 
   render() {
     return (
-      <form className="create-note" onSubmit={(e) => this.createNote(e)}>
+      <form className="create-note" onSubmit={e => this.createNote(e)}>
         <input
           name="title"
           value={this.state.title}
           placeholder="Title"
-          onChange={(e) => this.handleChange(e)}
+          onChange={e => this.handleChange(e)}
         />
         <textarea
           name="content"
           value={this.state.content}
           placeholder="Text goes here..."
           rows={3}
-          onChange={(e) => this.handleChange(e)}
+          onChange={e => this.handleChange(e)}
         >
         </textarea>
         <button type="submit">+</button>
