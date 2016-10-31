@@ -6,8 +6,10 @@ export default class Note extends React.Component {
   remove(e) {
     e.stopPropagation();
     noteRepository.remove(this.props, err => {
-      // TODO: inform user
-      if (err) throw err;
+      if (err) return this.props.alertHandler({
+        type: 'error',
+        message: 'Failed to delete note',
+      });
     });
   }
 
