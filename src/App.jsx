@@ -46,13 +46,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-// export default function App() {
-//   return (
-//     <div>
-//       <NoteForm />
-//       <Notes />
-//       <UpdateModal note={{ title: 'test', content: 'lorem ipsum' }} show />
-//     </div>
-//   );
-// }
