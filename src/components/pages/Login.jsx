@@ -106,18 +106,18 @@ export default class Login extends React.Component {
                 type="password"
                 name="confirm-password"
                 id="confirm-password"
-                onChange={e => this.handlePasswordConfirm(e)}
+                onChange={e => this.handlePassConfirm(e)}
               />
               <button type="submit" className="signup-submit">Sign up</button>
               <p>
                 Already have an account? {' '}
-                <a href="#" onClick={() => this.wantsToLogIn()}>Log In</a>
+                <a href="#" onClick={() => this.toggleSignUp()}>Log In</a>
               </p>
             </div>
           ) : (
             <div className="clearfix btn-group">
               <button type="submit">Sign in</button>
-              <button type="button" onClick={() => this.wantsToSignUp()}>
+              <button type="button" onClick={() => this.toggleSignUp()}>
                 Sign up
               </button>
             </div>
