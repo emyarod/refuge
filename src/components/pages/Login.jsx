@@ -15,11 +15,16 @@ export default class Login extends React.Component {
     };
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
+  handleEmailChange(e) { this.setState({ email: e.target.value }); }
+
+  handlePasswordChange(e) { this.setState({ password: e.target.value }); }
+
+  handlePassConfirm(e) { this.setState({ confirmPassword: e.target.value }); }
+
+  toggleSignUp() {
     this.state.wantsToSignUp
-      ? this.handleSignUp()
-      : this.handleSignIn();
+      ? this.setState({ wantsToSignUp: false })
+      : this.setState({ wantsToSignUp: true });
   }
 
   handleEmailChange(e) {
