@@ -72,9 +72,7 @@ export default class Login extends React.Component {
   }
 
   render() {
-    // const { from } = this.props.location.state || '/'
     const { redirectToReferrer } = this.state;
-
     return (
       <div>
         {redirectToReferrer && <Redirect to={'/notes'} />}
