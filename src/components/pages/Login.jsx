@@ -125,16 +125,29 @@ export default class Login extends React.Component {
           <hr />
           <div className="social-providers">
             <a href="#">
-              <i className="fa fa-facebook-square" aria-hidden></i>
+              <i
+                className="fa fa-facebook-square"
+                onClick={e => this.signInWithProvider(e, 'facebook')}
+                aria-hidden></i>
             </a>
             <a href="#">
-              <i className="fa fa-twitter-square" aria-hidden></i>
+              <i
+                className="fa fa-twitter-square"
+                onClick={e => this.signInWithProvider(e, 'twitter')}
+                aria-hidden></i>
             </a>
             <a href="#">
-              <i className="fa fa-google-plus-square" aria-hidden></i>
+              <i
+                className="fa fa-google-plus-square"
+                onClick={e => this.signInWithProvider(e, 'google')}
+                aria-hidden></i>
             </a>
             <a href="#">
-              <i className="fa fa-github-square" aria-hidden></i>
+              <i
+                className="fa fa-github-square"
+                onClick={e => this.signInWithProvider(e, 'github')}
+                aria-hidden
+              ></i>
             </a>
           </div>
         </form>
