@@ -12,19 +12,15 @@ export default {
   /**
   * Handles the sign in button press.
   */
-  signInWithEmailAndPassword: ({ email, password }) => {
+  signInWithEmailAndPassword({ email, password }) {
     // sign out if another user is currently already signed in
-    if (firebase.auth().currentUser) {
-      firebase.auth().signOut();
-    }
+    if (firebase.auth().currentUser) this.signOut();
 
-    // TODO: error handling
     if (email.length < 4) {
       alert('Please enter an email address.');
       return;
     }
 
-    // TODO: error handling
     if (password.length < 4) {
       alert('Please enter a password.');
       return;
@@ -33,57 +29,66 @@ export default {
     // Sign in with email and pass.
     return firebase.auth().signInWithEmailAndPassword(email, password)
       .catch(error => {
-        // TODO: Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // TODO: ternary
-        if (errorCode === 'auth/wrong-password') {
-          // TODO: handle errors
-          alert('Wrong password.');
-        } else {
-          // TODO: handle errors
-          alert(errorMessage);
-        }
-
-        console.log(error);
-        // TODO: disable/enable forms
-        // document.getElementById('quickstart-sign-in').disabled = false;
-        // [END_EXCLUDE]
+        const { code, message } = error;
+        code === 'auth/wrong-password'
+          ? alert('Wrong password.')
+          : alert(message);
       });
+  },
+  /**
+   * Handles sign in with 3rd party provider
+   */
+  signInWithProvider(authProvider) {
+    if (!firebase.auth().currentUser) this.signOut();
 
-    // [END authwithemail]
-    // TODO: disable/enable forms
-    // document.getElementById('quickstart-sign-in').disabled = true;
+    let provider;
+    switch (authProvider) {
+      case 'facebook':
+        provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('user_birthday');
+        break;
+      case 'github':
+        provider = new firebase.auth.GithubAuthProvider();
+        provider.addScope('repo');
+        break;
+      case 'google':
+        provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('profile');
+        provider.addScope('email');
+        break;
+      case 'twitter':
+        provider = firebase.auth.TwitterAuthProvider();
+        provider.addScope('profile');
+        provider.addScope('email');
+        break;
+      default:
+        return;
+    }
+
+    return firebase.auth().signInWithPopup(provider)
+      .catch(error =>  alert(error.message));
   },
   /**
   * Handles the sign up button press.
   */
   handleSignUp: ({ email, password }) => {
-    console.log('signup');
     if (email.length < 4) {
-      // TODO: error handling
       alert('Please enter an email address.');
       return;
     }
 
     if (password.length < 4) {
-      // TODO: error handling
       alert('Please enter a password.');
       return;
     }
 
-    // Create user with email and pass.
+    // Create user with email and password
     return firebase.auth().createUserWithEmailAndPassword(email, password)
       .catch(error => {
-        // TODO: Handle Errors here.
         const { code, message } = error;
-        if (code === 'auth/weak-password') {
-          alert('The password is too weak.');
-        } else {
-          alert(message);
-        }
-
-        console.log(error);
+        code === 'auth/weak-password'
+          ? alert('The password is too weak.')
+          : alert(message);
       });
   }
 }
