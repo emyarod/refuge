@@ -27,9 +27,11 @@ export default class Login extends React.Component {
       : this.setState({ wantsToSignUp: true });
   }
 
-  handleEmailChange(e) {
-    const email = e.target.value;
-    this.setState({ email });
+  authenticate(res) {
+    if (res) {
+      AuthData.authenticate();
+      this.setState({ redirectToReferrer: true });
+    }
   }
 
   handlePasswordChange(e) {
