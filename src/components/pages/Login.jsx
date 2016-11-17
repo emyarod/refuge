@@ -34,16 +34,27 @@ export default class Login extends React.Component {
     }
   }
 
-  handlePasswordChange(e) {
-    const password = e.target.value;
-    this.setState({ password });
+  /**
+   * Sign in with 3rd party auth provider
+   */
+  signInWithProvider(e, provider) {
+    e.preventDefault();
+    AuthData.signInWithProvider(provider)
+      .then(res => this.authenticate(res));
   }
 
-  handlePasswordConfirm(e) {
-    const confirmPassword = e.target.value;
-    this.setState({ confirmPassword });
+  /**
+   * Sign in with email and password
+   */
+  handleSignIn() {
+    const { email, password } = this.state;
+    AuthData.signInWithEmailAndPassword({ email, password }, alert => this.props.alertHandler(alert))
+      .then(res => this.authenticate(res));
   }
 
+  /**
+   * Sign up with email and password
+   */
   handleSignUp() {
     const { email, password, confirmPassword } = this.state;
     if (password === confirmPassword) {
@@ -53,23 +64,11 @@ export default class Login extends React.Component {
     }
   }
 
-  wantsToSignUp() {
-    this.setState({ wantsToSignUp: true });
-  }
-
-  wantsToLogIn() {
-    this.setState({ wantsToSignUp: false });
-  }
-
-  handleSignIn() {
-    // TODO: complete logic
-    const { email, password } = this.state;
-    AuthData.signInWithEmailAndPassword({ email, password })
-      .then(() => {
-        AuthData.authenticate();
-        this.setState({ redirectToReferrer: true });
-      });
-      // .then(res => console.log(res, 'asdfasdfasdf'));
+  handleSubmit(e) {
+    e.preventDefault();
+    this.state.wantsToSignUp
+      ? this.handleSignUp()
+      : this.handleSignIn();
   }
 
   render() {
