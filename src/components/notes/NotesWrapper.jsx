@@ -63,18 +63,16 @@ export default class NotesWrapper extends React.Component {
   render() {
     return (
       <div className="notes" ref="notes">
-        {this.state.notes.map(({ key, title, content }) => {
-          return (
-            <Note
-              key={key}
-              id={key}
-              title={title}
-              content={content}
-              clickHandler={() => this.selectNote({ key, title, content })}
-              alertHandler={alert => this.props.alertHandler(alert)}
-            />
-          );
-        })}
+        {this.state.notes.map(({ key, title, content }) => (
+          <Note
+            key={key}
+            id={key}
+            title={title}
+            content={content}
+            clickHandler={() => this.selectNote({ key, title, content })}
+            alertHandler={alert => this.props.alertHandler(alert)}
+          />
+        ))}
       </div>
     );
   }
