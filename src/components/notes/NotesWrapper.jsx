@@ -34,7 +34,7 @@ export default class NotesWrapper extends React.Component {
       // update state
       const notes = this.state.notes.slice(0);
       notes.unshift(note);
-      this.setState({ ...this.state, notes });
+      this.setState({ notes });
       this.state.masonry.reloadItems();
       this.state.masonry.layout();
     });
@@ -44,13 +44,13 @@ export default class NotesWrapper extends React.Component {
       const outdatedNote = noteRepository.find(notes, key);
       outdatedNote.title = title;
       outdatedNote.content = content;
-      this.setState({ ...this.state, notes });
+      this.setState({ notes });
     });
 
     noteRepository.on('removed', ({ key }) => {
       const noteToRemove = noteRepository.find(this.state.notes, key);
       const notes = this.state.notes.filter(note => note !== noteToRemove);
-      this.setState({ ...this.state, notes });
+      this.setState({ notes });
     })
   }
 
