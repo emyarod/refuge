@@ -13,36 +13,17 @@ export default class Notes extends React.Component {
 
   displayModal(note) { this.setState({ modal: true, note, }); }
 
-  handleAlert(alert) { this.refs.alerts.addAlert(alert) }
-
-  // FIXME: hard code alert to test
-  componentDidMount() {
-    const alerts = [
-      {
-        type: 'success',
-        message: 'Note successfully created',
-      },
-      {
-        type: 'error',
-        message: 'Failed to create note',
-      }
-    ];
-
-    alerts.forEach(alert => setTimeout(() => this.handleAlert(alert), 1000));
-  }
-
   render() {
     return (
-      <div>
-        <AlertsWrapper ref="alerts" />
-        <NoteForm alertHandler={alert => this.handleAlert(alert)} />
+      <div style={{ marginTop: '65px' }}>
+        <NoteForm alertHandler={alert => this.props.alertHandler(alert)} />
         <NotesWrapper
-          alertHandler={alert => this.handleAlert(alert)}
+          alertHandler={alert => this.props.alertHandler(alert)}
           modalHandler={note => this.displayModal(note)}
         />
         {this.state.modal
           ? <UpdateModal
-              alertHandler={alert => this.handleAlert(alert)}
+              alertHandler={alert => this.props.alertHandler(alert)}
               note={this.state.note}
               onDismiss={() => this.dismissModal()}
             />
