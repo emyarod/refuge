@@ -2,7 +2,6 @@ import React from 'react';
 import NoteForm from '../notes/NoteForm';
 import NotesWrapper from '../notes/NotesWrapper';
 import UpdateModal from '../notes/UpdateModal';
-import AlertsWrapper from '../AlertsWrapper';
 
 export default class Notes extends React.Component {
   constructor() {
