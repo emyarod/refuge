@@ -1,47 +1,51 @@
 import React from 'react';
+import { BrowserRouter, Match, Redirect } from 'react-router';
 // import logo from './logo.svg';
-import './App.scss';
-import NoteForm from './components/notes/NoteForm';
-import NotesWrapper from './components/notes/NotesWrapper';
-import UpdateModal from './components/notes/UpdateModal';
+import Auth from './data/Auth';
 import AlertsWrapper from './components/AlertsWrapper';
+import HeaderBar from './components/HeaderBar';
+import Login from './components/pages/Login';
+import Notes from './components/pages/Notes';
+import './App.scss';
 
-export default class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      modal: false,
-    };
-  }
-
-  dismissModal() {
-    this.setState({ modal: false, });
-  }
-
-  displayModal(note) {
-    this.setState({ modal: true, note, });
-  }
-
-  handleAlert(alert) {
-    this.refs.alerts.addAlert(alert)
-  }
+export default class Router extends React.Component {
+  handleAlert(alert) { this.refs.alerts.addAlert(alert) }
 
   render() {
+    const MatchWhenAuthorized = ({ component: Component, ...rest }) => (
+      <Match
+        {...rest}
+        render={props => {
+          props.alertHandler = alert => this.handleAlert(alert);
+          return Auth.isAuthenticated
+            ? <Component {...props} />
+            : (
+              <Redirect
+                to={{
+                  pathname: '/',
+                  state: { from: props.location },
+                }}
+              />
+            );
+        }}
+      />
+    );
+
     return (
       <div>
         <AlertsWrapper ref="alerts" />
-        <NoteForm alertHandler={alert => this.handleAlert(alert)} />
-        <NotesWrapper
-          alertHandler={alert => this.handleAlert(alert)}
-          modalHandler={note => this.displayModal(note)}
-        />
-        {this.state.modal
-          ? <UpdateModal
-              alertHandler={alert => this.handleAlert(alert)}
-              note={this.state.note}
-              onDismiss={() => this.dismissModal()}
-            />
-          : null}
+        <BrowserRouter>
+          {({ router }) => (
+            <div>
+              {Auth.isAuthenticated
+                ? <HeaderBar id="header" signOutHandler={() => (
+                  Auth.signOut().then(() => router.transitionTo('/'))
+                )} />
+                : <Login />}
+              <MatchWhenAuthorized pattern="/notes" component={Notes} />
+            </div>
+          )}
+        </BrowserRouter>
       </div>
     );
   }
