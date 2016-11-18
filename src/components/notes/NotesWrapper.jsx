@@ -13,9 +13,7 @@ export default class NotesWrapper extends React.Component {
     };
   }
 
-  selectNote(note) {
-    return this.props.modalHandler(note);
-  }
+  selectNote(note) { return this.props.modalHandler(note); }
 
   componentDidMount() {
     /**
