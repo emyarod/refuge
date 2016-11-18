@@ -17,9 +17,6 @@ export default class NotesWrapper extends React.Component {
 
   componentDidMount() {
     /**
-     * TODO: update description
-     * https://facebook.github.io/react/docs/refs-and-the-dom.html
-     *
      * Masonry is initialized here because it needs the name of the DOM element
      * that will be turned into a Masonry grid.
      * This data comes from the ref callback attribute
