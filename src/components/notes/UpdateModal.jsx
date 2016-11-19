@@ -1,5 +1,6 @@
 import React from 'react';
 import noteRepository from '../../data/NoteRepository';
+import './UpdateModal.scss';
 
 export default class UpdateModal extends React.Component {
   constructor() {
@@ -16,8 +17,11 @@ export default class UpdateModal extends React.Component {
 
   remove() {
     noteRepository.remove(this.props.note, err => {
-      // TODO: inform user
-      if (err) throw err;
+      if (err) return this.props.alertHandler({
+        type: 'error',
+        message: 'Failed to delete note',
+      });
+
       this.dismissModal();
     });
   }
@@ -33,8 +37,11 @@ export default class UpdateModal extends React.Component {
       ? this.state.content
       : this.props.note.content;
     noteRepository.update({ key, title, content }, err => {
-      // TODO: inform user
-      if (err) throw err;
+      if (err) return this.props.alertHandler({
+        type: 'error',
+        message: 'Failed to update note',
+      });
+
       this.dismissModal();
     });
   }
@@ -102,7 +109,7 @@ export default class UpdateModal extends React.Component {
     } else if (this.state.show && !this.state.animating) {
       return this.modal('');
     } else if (!this.state.show && this.state.animating) {
-      return this.modal('modal-leave');
+      return this.modal('modal-exit');
     }
 
     return null;

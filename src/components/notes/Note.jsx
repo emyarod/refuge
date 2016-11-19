@@ -6,8 +6,10 @@ export default class Note extends React.Component {
   remove(e) {
     e.stopPropagation();
     noteRepository.remove(this.props, err => {
-      // TODO: inform user
-      if (err) throw err;
+      if (err) return this.props.alertHandler({
+        type: 'error',
+        message: 'Failed to delete note',
+      });
     });
   }
 
@@ -26,23 +28,3 @@ export default class Note extends React.Component {
     );
   }
 }
-
-// TODO: see if stateless functional component can be reimplemented
-// export default function Note({ title, content }) {
-//   const remove = () => {
-//     console.log('hi');
-//   }
-//
-//   return (
-//     <div className="note">
-//       <h1>{title}</h1>
-//       <pre>{content}</pre>
-//       <button type="button" onClick={remove()}>
-//         <i className="fa fa-trash-o" aria-hidden></i>
-//       </button>
-//       <button className="edit" type="button">
-//         <i className="fa fa-pencil" aria-hidden></i>
-//       </button>
-//     </div>
-//   );
-// }

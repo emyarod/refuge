@@ -1,0 +1,9 @@
+.alerts-wrapper {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+
+  // place on top of other elements
+  z-index: 1;
+}

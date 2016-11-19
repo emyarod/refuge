@@ -14,24 +14,34 @@ class NoteRepository extends EventEmitter {
     firebase.initializeApp(config);
 
     // Firebase database reference to notes
-    this.ref = firebase.database().ref('notes');
+    this.ref = firebase.database().ref('users');
     this.attachFirebaseListeners();
+  }
+
+  // get unique id for Firebase user
+  getUID() {
+    return firebase.auth().currentUser.uid;
+  }
+
+  // get user's notes ref
+  getNotesRef() {
+    return this.ref.child(`${this.getUID()}/notes`);
   }
 
   // creates a note
   create({ title = '', content = '', }, onComplete) {
-    this.ref.push({ title, content }, onComplete);
+    this.getNotesRef().push({ title, content }, onComplete);
   }
 
   // updates a note
   update({ key, title = '', content = '' }, onComplete) {
-    this.ref.child(key).update({ title, content }, onComplete);
+    this.getNotesRef().child(key).update({ title, content }, onComplete);
   }
 
   // removes a note
   remove(note, onComplete) {
     const key = note.id || note.key;
-    this.ref.child(key).remove(onComplete);
+    this.getNotesRef().child(key).remove(onComplete);
   }
 
   // Finds the index of the note inside the 'notes' array by looking for its key
@@ -72,16 +82,20 @@ class NoteRepository extends EventEmitter {
 
   // attach event listeners to Firebase
   attachFirebaseListeners() {
-    this.ref.on('child_added', this.onAdded, this);
-    this.ref.on('child_removed', this.onRemoved, this);
-    this.ref.on('child_changed', this.onChanged, this);
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.getNotesRef().on('child_added', this.onAdded, this);
+        this.getNotesRef().on('child_removed', this.onRemoved, this);
+        this.getNotesRef().on('child_changed', this.onChanged, this);
+      }
+    });
   }
 
   // detach listeners from Firebase
   detachFirebaseListeners() {
-    this.ref.off('child_added', this.onAdded, this);
-    this.ref.off('child_removed', this.onRemoved, this);
-    this.ref.off('child_changed', this.onChanged, this);
+    this.getNotesRef().off('child_added', this.onAdded, this);
+    this.getNotesRef().off('child_removed', this.onRemoved, this);
+    this.getNotesRef().off('child_changed', this.onChanged, this);
   }
 }
 

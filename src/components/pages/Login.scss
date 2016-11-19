@@ -1,0 +1,75 @@
+.auth-form {
+  width: 480px;
+  max-width: 100%;
+  margin: 25vh auto 15px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 5px #ccc;
+
+  h1 {
+    font-weight: 300;
+  }
+
+  > div {
+    margin-top: 15px;
+  }
+
+  input {
+    height: 32px;
+    border: 0;
+    border-bottom: 2px solid #bbb;
+  }
+
+  input:focus{
+    border-bottom-color: #555;
+  }
+
+  label,
+  input {
+    display: block;
+    width: 100%;
+  }
+
+  button {
+    margin: 0;
+    padding: 4px 6px;
+    border: 1px solid #41b883;
+    border-radius: 3px;
+    font-size: 18px;
+    background: #fff;
+  }
+
+  .btn-group button {
+    float: left;
+    width: 50%;
+    border-radius: 3px 0 0 3px;
+
+    + button{
+      border-left: 0;
+      border-radius: 0 3px 3px 0;
+    }
+  }
+
+  .signup-submit {
+    width: 100%;
+  }
+
+  hr {
+    margin-top: 20px;
+  }
+
+  a {
+    color: #41b883;
+    font-weight: bold;
+  }
+
+  .social-providers {
+    text-align: center;
+
+    a {
+      padding: 4px;
+      font-size: 36px;
+    }
+  }
+}

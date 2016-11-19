@@ -1,10 +1,10 @@
 import React from 'react';
 import Masonry from 'masonry-layout';
 import Note from './Note';
-import './Layout.scss';
+import './NotesWrapper.scss';
 import noteRepository from '../../data/NoteRepository';
 
-export default class Layout extends React.Component {
+export default class NotesWrapper extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -13,22 +13,15 @@ export default class Layout extends React.Component {
     };
   }
 
-  selectNote(note) {
-    return this.props.modalHandler(note);
-  }
+  selectNote(note) { return this.props.modalHandler(note); }
 
   componentDidMount() {
     /**
-     * TODO: update description
-     * https://facebook.github.io/react/docs/refs-and-the-dom.html
-     *
      * Masonry is initialized here because it needs the name of the DOM element
      * that will be turned into a Masonry grid.
      * This data comes from the ref callback attribute
      */
-    // TODO: remove spread operator parameter
     this.setState({
-      ...this.state,
       masonry: new Masonry(this.refs.notes, {
         itemSelector: '.note',
         columnWidth: 240,
@@ -41,7 +34,7 @@ export default class Layout extends React.Component {
       // update state
       const notes = this.state.notes.slice(0);
       notes.unshift(note);
-      this.setState({ ...this.state, notes });
+      this.setState({ notes });
       this.state.masonry.reloadItems();
       this.state.masonry.layout();
     });
@@ -51,13 +44,13 @@ export default class Layout extends React.Component {
       const outdatedNote = noteRepository.find(notes, key);
       outdatedNote.title = title;
       outdatedNote.content = content;
-      this.setState({ ...this.state, notes });
+      this.setState({ notes });
     });
 
     noteRepository.on('removed', ({ key }) => {
       const noteToRemove = noteRepository.find(this.state.notes, key);
       const notes = this.state.notes.filter(note => note !== noteToRemove);
-      this.setState({ ...this.state, notes });
+      this.setState({ notes });
     })
   }
 
@@ -70,17 +63,16 @@ export default class Layout extends React.Component {
   render() {
     return (
       <div className="notes" ref="notes">
-        {this.state.notes.map(({ key, title, content }) => {
-          return (
-            <Note
-              key={key}
-              id={key}
-              title={title}
-              content={content}
-              clickHandler={() => this.selectNote({ key, title, content })}
-            />
-          );
-        })}
+        {this.state.notes.map(({ key, title, content }) => (
+          <Note
+            key={key}
+            id={key}
+            title={title}
+            content={content}
+            clickHandler={() => this.selectNote({ key, title, content })}
+            alertHandler={alert => this.props.alertHandler(alert)}
+          />
+        ))}
       </div>
     );
   }
